@@ -1,3 +1,11 @@
+def plant_recommendation(season):
+    flower_recommend = dict(
+        winter='Snowdrop', spring='Violas', autumn='Nerines', summer='Dahlias')
+    veg_recommend = dict(
+        winter='Parsnips', spring='Asparagus', autumn='Pumpkins', summer='Sweetcorn')
+    return flower_recommend[season], veg_recommend[season]
+
+
 def season_check(season):
     '''Checks input and adjusts advice based on input or displays error'''
     while True:
@@ -9,10 +17,14 @@ def season_check(season):
             season = "Protect your plants from frost with covers.\n"
             return season
 
-        if season.lower() == 'autumn' or season.lower() == 'spring':
-            season = "No advice for this season.\n"
+        if season.lower() == 'autumn':
+            season = "No advice for autumn.\n"
             return season
 
+        if season.lower() == 'spring':
+            season = "No advice for spring.\n"
+            return season
+    
         else:
             print("sorry that is not a valid input, please try again")
             season = input("what season do you need advice for? ")
@@ -37,9 +49,13 @@ def plant_type_check(plant_type):
 season_advice = input("what season do you need advice for? ")
 ADVICE = season_check(season_advice)
 
+plants = []
+plants = plant_recommendation(season_advice)
+
 plant_type = input("What type of plant are you are you growing? flower or vegetable ")
 ADVICE += plant_type_check(plant_type)
 print(ADVICE)
+print(f"For {season_advice}, we recommend the {plants[0]} flower, and {plants[1]} for a vegetable")
 
 # Examples of possible features to add:
 # - Add detailed comments explaining each block of code.
